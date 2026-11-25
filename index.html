@@ -338,43 +338,23 @@
   .small { font-size: 0.9rem; color: var(--muted); }
   footer { text-align: center; padding: 26px 16px; color: var(--muted); font-size: 0.92rem; }
 
-  /* Modal Panduan Apps Script & Pesan */
-  .modal-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.65);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    z-index: 999;
-  }
-  .modal-box {
-    background: #fff;
-    max-width: 720px;
-    width: 100%;
-    max-height: 88vh;
-    overflow-y: auto;
-    border-radius: 20px;
-    padding: 24px;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.3);
-  }
-  pre.script-box {
-    background: #0f172a;
-    color: #f8fafc;
-    padding: 14px;
-    border-radius: 12px;
-    overflow-x: auto;
-    font-size: 0.85rem;
+  @media print {
+    header, nav.tabs, #belajar, #game, #kuis, footer,
+    #refleksi > p, #refleksi > .question, #refleksi > div:last-of-type {
+      display: none !important;
+    }
+    body { background: #fff !important; }
+    .wrap { margin: 0 auto !important; max-width: 100% !important; }
+    #refleksi { display: block !important; box-shadow: none !important; border: 0 !important; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="pill">MEDIA PEMBELAJARAN INFORMATIKA • KELAS IX / FASE D • SIAP IFP &amp; LMS</div>
+  <div class="pill">MEDIA PEMBELAJARAN INFORMATIKA • KELAS IX / FASE D • </div>
   <h1>🧠 LOGIKA CERDAS</h1>
-  <p>Eksplorasi Visual <b>Flowchart &amp; Pseudocode</b>, Game Penyusun Algoritma, Asesmen Bertingkat (Diagnostik, Proses &amp; HOTS), serta Integrasi Laporan Spreadsheet.</p>
+  <p>Eksplorasi Visual <b>Flowchart &amp; Pseudocode</b>, Game Penyusun Algoritma, Asesmen Bertingkat (Diagnostik, Proses &amp; HOTS).</p>
 </header>
 
 <main class="wrap">
@@ -382,9 +362,9 @@
   <section class="card">
     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
       <h2 style="margin:0;">👋 Identitas Petualang Logika</h2>
-      <span class="pill" style="background:#dcfce7; color:#166534; border-color:#86efac;">🟢 Terhubung Otomatis ke Spreadsheet</span>
+      <span class="pill" style="background:#dcfce7; color:#166534; border-color:#86efac;"></span>
     </div>
-    <p class="small" style="margin-top:6px;">Lengkapi nama dan kelas sebelum memulai pembelajaran. Seluruh skor asesmen dan refleksi akan langsung terkirim otomatis ke Spreadsheet tanpa perlu menempel link apa pun.</p>
+    <p class="small" style="margin-top:6px;">Lengkapi nama dan kelas sebelum memulai pembelajaran.</p>
     <div class="row">
       <div>
         <label for="studentName"><b>Nama Lengkap Siswa</b></label>
@@ -406,10 +386,10 @@
 
   <!-- NAVIGASI UTAMA -->
   <nav class="tabs" aria-label="Menu Utama Pembelajaran">
-    <button class="active" data-tab="belajar">📘 1. Visualisasi Materi</button>
-    <button data-tab="game">🎮 2. Game Algoritma</button>
-    <button data-tab="kuis">📝 3. Kuis &amp; Asesmen</button>
-    <button data-tab="refleksi">🌟 4. Refleksi &amp; Kirim</button>
+    <button type="button" class="active" data-tab="belajar">📘 1. Visualisasi Materi</button>
+    <button type="button" data-tab="game">🎮 2. Game Algoritma</button>
+    <button type="button" data-tab="kuis">📝 3. Kuis &amp; Asesmen</button>
+    <button type="button" data-tab="refleksi">🌟 4. Refleksi &amp; Kirim</button>
   </nav>
 
   <!-- ========================================================= -->
@@ -421,27 +401,27 @@
 
     <!-- Kartu Interaktif Bagian-Bagian Flowchart -->
     <div class="symbol-grid" id="symbolCards">
-      <div class="symbol-card selected" onclick="selectSymbol(0, this)">
+      <div class="symbol-card selected" data-symbol="0">
         <svg width="110" height="54" viewBox="0 0 110 54"><rect x="10" y="7" width="90" height="40" rx="20" fill="#dbeafe" stroke="#1d63b8" stroke-width="3"/><text x="55" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f2942">MULAI</text></svg>
         <div><b>1. Terminator</b></div>
         <div class="small">Oval / Kapsul</div>
       </div>
-      <div class="symbol-card" onclick="selectSymbol(1, this)">
+      <div class="symbol-card" data-symbol="1">
         <svg width="110" height="54" viewBox="0 0 110 54"><polygon points="22,8 102,8 88,46 8,46" fill="#e0f2fe" stroke="#0284c7" stroke-width="3"/><text x="55" y="32" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f2942">INPUT / OUT</text></svg>
         <div><b>2. Input / Output</b></div>
         <div class="small">Jajar Genjang</div>
       </div>
-      <div class="symbol-card" onclick="selectSymbol(2, this)">
+      <div class="symbol-card" data-symbol="2">
         <svg width="110" height="54" viewBox="0 0 110 54"><rect x="12" y="8" width="86" height="38" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/><text x="55" y="32" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f2942">PROSES</text></svg>
         <div><b>3. Process</b></div>
         <div class="small">Persegi Panjang</div>
       </div>
-      <div class="symbol-card" onclick="selectSymbol(3, this)">
+      <div class="symbol-card" data-symbol="3">
         <svg width="110" height="54" viewBox="0 0 110 54"><polygon points="55,4 102,27 55,50 8,27" fill="#fef3c7" stroke="#d97706" stroke-width="3"/><text x="55" y="31" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f2942">KONDISI?</text></svg>
         <div><b>4. Decision</b></div>
         <div class="small">Belah Ketupat</div>
       </div>
-      <div class="symbol-card" onclick="selectSymbol(4, this)">
+      <div class="symbol-card" data-symbol="4">
         <svg width="110" height="54" viewBox="0 0 110 54"><line x1="15" y1="27" x2="85" y2="27" stroke="#1d63b8" stroke-width="4"/><polygon points="85,19 100,27 85,35" fill="#1d63b8"/></svg>
         <div><b>5. Flowline</b></div>
         <div class="small">Garis Panah Alur</div>
@@ -454,15 +434,15 @@
 
     <!-- Simulasi Interaktif Perbandingan Flowchart & Pseudocode -->
     <h3>⚡ Simulasi Langsung: Hubungan Flowchart &amp; Pseudocode</h3>
-    <p class="small">Masukkan nilai ujian siswa, lalu klik <b>"Jalankan Simulasi Langkah demi Langkah"</b> untuk melihat bagaimana alur berjalan bersamaan di Flowchart dan Pseudocode!</p>
+    <p class="small">Masukkan nilai ujian siswa, lalu klik <b>"Jalankan Simulasi"</b> untuk melihat bagaimana alur berjalan bersamaan di Flowchart dan Pseudocode!</p>
     <div class="row" style="align-items:center; background:#f8fafc; padding:12px; border-radius:12px; border:1px solid #e2e8f0;">
       <div style="max-width:240px;">
         <label for="simInputNilai"><b>Masukkan Nilai (0–100):</b></label>
         <input id="simInputNilai" type="number" min="0" max="100" value="82">
       </div>
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <button type="button" class="teal" onclick="runStepSimulation()">▶️ Jalankan Simulasi</button>
-        <button type="button" class="secondary" onclick="resetSimulation()">🔄 Reset</button>
+        <button type="button" id="btnRunSim" class="teal">▶️ Jalankan Simulasi</button>
+        <button type="button" id="btnResetSim" class="secondary">🔄 Reset</button>
       </div>
       <div id="simStatusText" style="font-weight:bold; color:var(--navy);">Status: Siap dijalankan</div>
     </div>
@@ -568,8 +548,8 @@
         <div class="small" style="margin-top:10px;"><b>Urutan Algoritma Kamu:</b></div>
         <div id="stepTarget" class="step-target"></div>
         <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
-          <button type="button" class="green" onclick="checkGame1()">✅ Cek Urutan</button>
-          <button type="button" class="secondary" onclick="nextGame1Level()">⏭️ Tantangan Berikutnya</button>
+          <button type="button" id="btnCheckGame1" class="green">✅ Cek Urutan</button>
+          <button type="button" id="btnNextGame1" class="secondary">⏭️ Tantangan Berikutnya</button>
         </div>
         <div id="game1Feedback"></div>
       </div>
@@ -583,10 +563,10 @@
         <p class="small">Baca potongan instruksi algoritma berikut, lalu pilih simbol flowchart yang paling tepat!</p>
         <div id="game2CaseBox" style="background:#0f2942; color:#fff; padding:16px; border-radius:12px; font-size:1.08rem; font-weight:bold; text-align:center; margin:12px 0;"></div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;" id="game2Choices">
-          <button type="button" class="secondary" onclick="answerGame2('Terminator')">⬭ Terminator (Oval)</button>
-          <button type="button" class="secondary" onclick="answerGame2('Input/Output')">▱ Input/Output</button>
-          <button type="button" class="secondary" onclick="answerGame2('Process')">▭ Process (Persegi)</button>
-          <button type="button" class="secondary" onclick="answerGame2('Decision')">◇ Decision (Belah Ketupat)</button>
+          <button type="button" class="secondary" data-g2="Terminator">⬭ Terminator (Oval)</button>
+          <button type="button" class="secondary" data-g2="Input/Output">▱ Input/Output</button>
+          <button type="button" class="secondary" data-g2="Process">▭ Process (Persegi)</button>
+          <button type="button" class="secondary" data-g2="Decision">◇ Decision (Belah Ketupat)</button>
         </div>
         <div id="game2Feedback"></div>
       </div>
@@ -601,9 +581,9 @@
     <p>Kerjakan ketiga tahapan asesmen secara berurutan. Setiap asesmen memiliki umpan balik pembahasan otomatis.</p>
 
     <div class="sub-tabs">
-      <button class="active" data-quiztab="awal" onclick="switchQuizTab('awal', this)">1️⃣ Asesmen Awal (Diagnostik - 3 Soal)</button>
-      <button data-quiztab="proses" onclick="switchQuizTab('proses', this)">2️⃣ Asesmen Proses (Formatif - 5 Soal)</button>
-      <button data-quiztab="akhir" onclick="switchQuizTab('akhir', this)">3️⃣ Asesmen Akhir (HOTS / TKA - 10 Soal)</button>
+      <button type="button" class="active" data-quiztab="awal">1️⃣ Asesmen Awal (Diagnostik - 3 Soal)</button>
+      <button type="button" data-quiztab="proses">2️⃣ Asesmen Proses (Formatif - 5 Soal)</button>
+      <button type="button" data-quiztab="akhir">3️⃣ Asesmen Akhir (HOTS / TKA - 10 Soal)</button>
     </div>
 
     <!-- ASESMEN AWAL -->
@@ -612,7 +592,7 @@
         <b>Tujuan Asesmen Awal:</b> Mengukur pemahaman dasar kamu mengenai logika urutan dan kondisi sebab-akibat sebelum mendalami kode.
       </div>
       <div id="awalQuestions"></div>
-      <button type="button" class="teal" onclick="gradeQuiz('awal')">Periksa Asesmen Awal</button>
+      <button type="button" class="teal" data-grade="awal">Periksa Asesmen Awal</button>
       <div id="awalResult" aria-live="polite"></div>
     </div>
 
@@ -622,7 +602,7 @@
         <b>Tujuan Asesmen Proses (5 Soal):</b> Menguji ketepatan penggunaan simbol flowchart dan struktur perintah pseudocode dasar.
       </div>
       <div id="prosesQuestions"></div>
-      <button type="button" class="teal" onclick="gradeQuiz('proses')">Periksa Asesmen Proses</button>
+      <button type="button" class="teal" data-grade="proses">Periksa Asesmen Proses</button>
       <div id="prosesResult" aria-live="polite"></div>
     </div>
 
@@ -632,7 +612,7 @@
         <b>Tujuan Asesmen Akhir (10 Soal HOTS &amp; Tes Kemampuan Akademik):</b> Menguji kemampuan analisis alur logika (C4), evaluasi kesalahan/bug algoritma (C5), dan perancangan solusi pemecahan masalah kompleks (C6).
       </div>
       <div id="akhirQuestions"></div>
-      <button type="button" class="green" onclick="gradeQuiz('akhir')">Periksa Asesmen Akhir (HOTS)</button>
+      <button type="button" class="green" data-grade="akhir">Periksa Asesmen Akhir (HOTS)</button>
       <div id="akhirResult" aria-live="polite"></div>
     </div>
   </section>
@@ -668,10 +648,10 @@
     </div>
 
     <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
-      <button type="button" class="green" onclick="submitToSpreadsheet()">🚀 Kirim Langsung ke Spreadsheet</button>
-      <button type="button" class="teal" onclick="downloadCSVReport()">📥 Unduh Rekap CSV / Excel</button>
-      <button type="button" class="secondary" onclick="printReport()">🖨️ Cetak / Simpan PDF</button>
-      <button type="button" class="gold" onclick="resetAll()">🔄 Reset Semua Data</button>
+      <button type="button" id="btnSubmitSheet" class="green">🚀 Kirim Langsung ke Spreadsheet</button>
+      <button type="button" id="btnDownloadCsv" class="teal">📥 Unduh Rekap CSV / Excel</button>
+      <button type="button" id="btnPrintReport" class="secondary">🖨️ Cetak / Simpan PDF</button>
+      <button type="button" id="btnResetAll" class="gold">🔄 Reset Semua Data</button>
     </div>
     <div id="submitStatus" aria-live="polite"></div>
   </section>
@@ -715,45 +695,66 @@ const symbolInfo = [
 
 function selectSymbol(idx, el) {
   document.querySelectorAll('.symbol-card').forEach(c => c.classList.remove('selected'));
-  el.classList.add('selected');
-  const item = symbolInfo[idx];
+  if (el) el.classList.add('selected');
+  const item = symbolInfo[idx] || symbolInfo[0];
   document.getElementById('symbolDetail').innerHTML = `
     <div style="font-size:1.12rem; font-weight:800; color:var(--navy); margin-bottom:4px;">📌 ${item.name}</div>
     <div><b>Fungsi Utama:</b> ${item.func}</div>
     <div style="margin-top:4px; color:var(--teal);"><b>Aturan Penulisan:</b> ${item.rule}</div>
   `;
 }
-selectSymbol(0, document.querySelector('.symbol-card'));
 
 // =========================================================================
 // 2. SIMULASI INTERAKTIF FLOWCHART <-> PSEUDOCODE
 // =========================================================================
 let simTimers = [];
-function resetSimulation() {
+
+function clearSimHighlights() {
   simTimers.forEach(t => clearTimeout(t));
   simTimers = [];
-  document.querySelectorAll('.svg-node').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('#flowSvg .svg-node').forEach(n => n.classList.remove('active'));
   document.querySelectorAll('.code-line').forEach(l => l.classList.remove('active-step'));
-  document.getElementById('simStatusText').textContent = "Status: Siap dijalankan";
+}
+
+function resetSimulation() {
+  clearSimHighlights();
+  const statusEl = document.getElementById('simStatusText');
+  if (statusEl) {
+    statusEl.textContent = "Status: Direset — Siap dijalankan";
+  }
 }
 
 function highlightPair(stepId, msg) {
-  document.querySelectorAll('.svg-node').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('#flowSvg .svg-node').forEach(n => n.classList.remove('active'));
   document.querySelectorAll('.code-line').forEach(l => l.classList.remove('active-step'));
+
   const node = document.getElementById('node-' + stepId);
   const code = document.getElementById('code-' + stepId);
   if (node) node.classList.add('active');
   if (code) code.classList.add('active-step');
-  document.getElementById('simStatusText').textContent = msg;
+
+  const statusEl = document.getElementById('simStatusText');
+  if (statusEl) {
+    statusEl.textContent = msg;
+  }
 }
 
 function runStepSimulation() {
-  resetSimulation();
-  const val = Number(document.getElementById('simInputNilai').value);
-  if (isNaN(val) || val < 0 || val > 100) {
-    document.getElementById('simStatusText').textContent = "⚠️ Masukkan angka nilai antara 0 sampai 100.";
+  clearSimHighlights();
+  const inputEl = document.getElementById('simInputNilai');
+  const statusEl = document.getElementById('simStatusText');
+
+  if (!inputEl || inputEl.value.trim() === "") {
+    if (statusEl) statusEl.textContent = "⚠️ Silakan masukkan angka nilai antara 0 sampai 100.";
     return;
   }
+
+  const val = Number(inputEl.value);
+  if (Number.isNaN(val) || val < 0 || val > 100) {
+    if (statusEl) statusEl.textContent = "⚠️ Masukkan angka nilai antara 0 sampai 100.";
+    return;
+  }
+
   const isPass = val >= 75;
   const sequence = [
     { id: 'start', msg: "Langkah 1: Program dimulai (MULAI)" },
@@ -762,6 +763,7 @@ function runStepSimulation() {
     { id: isPass ? 'yes' : 'no', msg: isPass ? 'Langkah 4: Kondisi Benar → TAMPILKAN "Tuntas"' : 'Langkah 4: Kondisi Salah → TAMPILKAN "Remidi"' },
     { id: 'end', msg: "Langkah 5: Algoritma selesai (SELESAI)" }
   ];
+
   sequence.forEach((step, idx) => {
     const t = setTimeout(() => highlightPair(step.id, step.msg), idx * 1100);
     simTimers.push(t);
@@ -856,7 +858,6 @@ function nextGame1Level() {
   loadGame1();
 }
 
-// Game 2: Tebak Simbol Cepat
 const game2Items = [
   { text: "Apakah saldo >= harga_tiket ?", ans: "Decision" },
   { text: "INPUT username, password", ans: "Input/Output" },
@@ -871,6 +872,7 @@ let g2Score = 0;
 function loadGame2() {
   document.getElementById('game2CaseBox').textContent = `"${game2Items[g2Index].text}"`;
 }
+
 function answerGame2(choice) {
   const current = game2Items[g2Index];
   const fb = document.getElementById('game2Feedback');
@@ -884,12 +886,9 @@ function answerGame2(choice) {
     updateSummary();
   } else {
     fb.className = "feedback bad";
-    fb.textContent = `❌ Kurang tepat. Perhatikan apakah instruksi tersebut meminta data, menghitung, atau menguji kondisi.`;
+    fb.textContent = "❌ Kurang tepat. Perhatikan apakah instruksi tersebut meminta data, menghitung, atau menguji kondisi.";
   }
 }
-
-loadGame1();
-loadGame2();
 
 // =========================================================================
 // 4. BANK SOAL KUIS (ASESMEN AWAL 3, PROSES 5, AKHIR HOTS/TKA 10)
@@ -1111,10 +1110,6 @@ function renderQuiz(key, containerId) {
   `).join('');
 }
 
-renderQuiz('awal', 'awalQuestions');
-renderQuiz('proses', 'prosesQuestions');
-renderQuiz('akhir', 'akhirQuestions');
-
 function switchQuizTab(key, btn) {
   document.querySelectorAll('[data-quiztab]').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
@@ -1162,16 +1157,6 @@ function gradeQuiz(key) {
 // =========================================================================
 // 5. NAVIGASI TAB UTAMA & REKAP HASIL
 // =========================================================================
-document.querySelectorAll('[data-tab]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('[data-tab]').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.panel').forEach(p => p.classList.add('hidden'));
-    document.getElementById(btn.dataset.tab).classList.remove('hidden');
-    if (btn.dataset.tab === 'refleksi') updateSummary();
-  });
-});
-
 function escapeHTML(s) {
   return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
@@ -1202,15 +1187,11 @@ function updateSummary() {
     <div class="score-badge">Rata-Rata Kuis: ${quizAvg}/100</div>
   `;
 }
-updateSummary();
 
-// =========================================================================
-// 6. INTEGRASI PENGIRIMAN DATA KE GOOGLE SPREADSHEET & EKSPOR CSV
 // =========================================================================
 // 6. INTEGRASI PENGIRIMAN LANGSUNG KE GOOGLE SPREADSHEET & EKSPOR CSV
 // =========================================================================
-// Endpoint Web App Google Apps Script tertanam langsung (tanpa input link di UI)
-const SPREADSHEET_ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbzLogikaCerdasInformatikaKelas9AutoSync/exec";
+const SPREADSHEET_ENDPOINT_URL = "https://script.google.com/macros/s/AKfycbyVB-JnpM6N8GK2RSnw_zEtLv9Hgcv-PDOYmklfmYQRi2ArWmjAklV8RWss9YgGpSDYTw/exec";
 const LOCAL_REKAP_KEY = "logika_cerdas_rekap_siswa";
 
 function collectPayload() {
@@ -1278,4 +1259,135 @@ async function submitToSpreadsheet() {
     `;
   }
 }
-// ... existing code ... -->
+
+function downloadCSVReport() {
+  updateSummary();
+  const payload = collectPayload();
+  const rows = [
+    ["Waktu", "Nama", "Kelas", "Skor Game", "Asesmen Awal", "Asesmen Proses", "Asesmen Akhir", "Rata-Rata Kuis", "Pemahaman", "Tantangan", "Contoh Flowchart"],
+    [
+      payload.waktu,
+      payload.nama || "Belum diisi",
+      payload.kelas,
+      payload.skorGame,
+      payload.skorAwal,
+      payload.skorProses,
+      payload.skorAkhir,
+      payload.rataRata,
+      payload.refleksiLevel,
+      payload.refleksiTantangan,
+      payload.refleksiContoh
+    ]
+  ];
+  const csvContent = rows
+    .map(r => r.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(","))
+    .join("\n");
+
+  const blob = new Blob(["\uFEFF" + csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `rekap-logika-cerdas-${(payload.nama || "siswa").toLowerCase().replace(/\s+/g, "-")}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function printReport() {
+  updateSummary();
+  window.print();
+}
+
+function resetAll() {
+  if (!confirm("Yakin ingin mereset semua nilai kuis, game, simulasi, dan refleksi?")) return;
+  resetSimulation();
+  g1Index = 0;
+  g1Selected = [];
+  g1Score = 0;
+  g2Index = 0;
+  g2Score = 0;
+  scores.awal = null;
+  scores.proses = null;
+  scores.akhir = null;
+
+  document.getElementById('game1ScoreBadge').textContent = "Skor: 0/100";
+  document.getElementById('game2ScoreBadge').textContent = "Skor: 0/100";
+  document.getElementById('game2Feedback').innerHTML = "";
+  document.getElementById('game2Feedback').className = "";
+  document.getElementById('awalResult').innerHTML = "";
+  document.getElementById('awalResult').className = "";
+  document.getElementById('prosesResult').innerHTML = "";
+  document.getElementById('prosesResult').className = "";
+  document.getElementById('akhirResult').innerHTML = "";
+  document.getElementById('akhirResult').className = "";
+  document.getElementById('submitStatus').innerHTML = "";
+  document.getElementById('submitStatus').className = "";
+  document.getElementById('reflectChallenge').value = "";
+  document.getElementById('reflectExample').value = "";
+  document.querySelectorAll('input[name="reflectLevel"]').forEach(r => { r.checked = false; });
+
+  renderQuiz('awal', 'awalQuestions');
+  renderQuiz('proses', 'prosesQuestions');
+  renderQuiz('akhir', 'akhirQuestions');
+  loadGame1();
+  loadGame2();
+  updateSummary();
+}
+
+// =========================================================================
+// 7. INISIALISASI & EVENT LISTENERS
+// =========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  selectSymbol(0, document.querySelector('.symbol-card'));
+  renderQuiz('awal', 'awalQuestions');
+  renderQuiz('proses', 'prosesQuestions');
+  renderQuiz('akhir', 'akhirQuestions');
+  loadGame1();
+  loadGame2();
+  updateSummary();
+
+  document.querySelectorAll('.symbol-card').forEach((card, idx) => {
+    card.addEventListener('click', () => selectSymbol(idx, card));
+  });
+
+  const btnRun = document.getElementById('btnRunSim');
+  const btnReset = document.getElementById('btnResetSim');
+  if (btnRun) btnRun.addEventListener('click', runStepSimulation);
+  if (btnReset) btnReset.addEventListener('click', resetSimulation);
+
+  document.getElementById('btnCheckGame1')?.addEventListener('click', checkGame1);
+  document.getElementById('btnNextGame1')?.addEventListener('click', nextGame1Level);
+
+  document.querySelectorAll('[data-g2]').forEach(btn => {
+    btn.addEventListener('click', () => answerGame2(btn.dataset.g2));
+  });
+
+  document.querySelectorAll('[data-quiztab]').forEach(btn => {
+    btn.addEventListener('click', () => switchQuizTab(btn.dataset.quiztab, btn));
+  });
+
+  document.querySelectorAll('[data-grade]').forEach(btn => {
+    btn.addEventListener('click', () => gradeQuiz(btn.dataset.grade));
+  });
+
+  document.querySelectorAll('[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-tab]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.panel').forEach(p => p.classList.add('hidden'));
+      document.getElementById(btn.dataset.tab).classList.remove('hidden');
+      if (btn.dataset.tab === 'refleksi') updateSummary();
+    });
+  });
+
+  document.getElementById('studentName')?.addEventListener('input', updateSummary);
+  document.getElementById('studentClass')?.addEventListener('change', updateSummary);
+  document.getElementById('btnSubmitSheet')?.addEventListener('click', submitToSpreadsheet);
+  document.getElementById('btnDownloadCsv')?.addEventListener('click', downloadCSVReport);
+  document.getElementById('btnPrintReport')?.addEventListener('click', printReport);
+  document.getElementById('btnResetAll')?.addEventListener('click', resetAll);
+});
+</script>
+</body>
+</html>
